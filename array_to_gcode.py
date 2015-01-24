@@ -29,8 +29,8 @@ def array_to_gcode(array):
                               # pixels
                 gcode += move(x_pos, y_pos)
                 gcode += nozzles_gcode
-            x_pos + X_STEP
-        y_pos + Y_STEP
+            x_pos += X_STEP
+        y_pos += Y_STEP
 
     return gcode
 

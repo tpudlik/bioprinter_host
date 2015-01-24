@@ -2,13 +2,16 @@
 test_array_to_gcode.py
 """
 
-import sys
+import os, sys
 sys.path.append('..')
+
+abspath = os.path.abspath(__file__)
+testdir = os.path.dirname(abspath)
 
 import unittest
 import numpy as np
 from array_to_gcode import *
-from config import FEEDRATE
+from config import FEEDRATE, HEIGHT, WIDTH
 
 class test_salvo_integer(unittest.TestCase):
 
@@ -75,12 +78,26 @@ class test_move(unittest.TestCase):
         gcode += "M400;\n"
         assert gcode == move(1.5, 0)
 
+    def test_move_X_fraction(self):
+        gcode  = "G1X0.3Y0F" + str(FEEDRATE) + ';\n'
+        gcode += "M400;\n"
+        assert gcode == move(0.3, 0)
+
     def test_move_Y(self):
         gcode  = "G1X0Y4.2F" + str(FEEDRATE) + ';\n'
         gcode += "M400;\n"
         assert gcode == move(0, 4.2)
 
-#class test_array_to_gcode(unittest.TestCase):
-#
-#    def test_empty(self):
-#        array = np.zeros()
+class test_array_to_gcode(unittest.TestCase):
+
+    def test_empty(self):
+        array = np.zeros((HEIGHT, WIDTH))
+        assert '' == array_to_gcode(array)
+
+    def test_ones(self):
+        array = np.ones((15, 4))
+        with open(os.path.join(testdir, "ones_15_4.gcode"), 'r') as f:
+            gcode = f.read()
+        assert gcode == array_to_gcode(array)
+
+    def test_
