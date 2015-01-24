@@ -17,8 +17,10 @@ NOZZLE_SPREAD = 3.175
 # Speed at which the printer head is to move (F argument in G01 Gcode)
 FEEDRATE = 1000
 
-# 
-X_STEP = 300
-Y_STEP = 3175
+# Size of a pixel along the x direction
+X_STEP = 0.300
+
+# Size of 12 pixels along the y direction (width of the write head)
+Y_STEP = 3.175
 
 
