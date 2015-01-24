@@ -1,0 +1,7 @@
+"""
+config.py
+"""
+
+WIDTH = 13323
+HEIGHT
+MAX_INTENSITY
