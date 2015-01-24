@@ -2,11 +2,11 @@
 config.py
 """
 
-WIDTH = 13323
-HEIGHT
+HEIGHT = 5 # rows
+WIDTH = 3 # columns
 
 # Maximum number of times you can print to a single spot
-MAX_INTENSITY = 1
+MAX_INTENSITY = 10
 
 # Number of nozzles
 NOZZLES = 12
@@ -20,3 +20,5 @@ FEEDRATE = 1000
 # 
 X_STEP = 300
 Y_STEP = 3175
+
+
