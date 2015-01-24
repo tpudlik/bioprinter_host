@@ -100,4 +100,19 @@ class test_array_to_gcode(unittest.TestCase):
             gcode = f.read()
         assert gcode == array_to_gcode(array)
 
-    def test_
+    def test_smile(self):
+        s = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+             [0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
+             [0, 1, 0, 1, 0, 0, 0 ,1, 0, 1, 0],
+             [0, 0 ,1, 0, 0, 0, 0 ,0, 1, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+             [0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+             [0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+             [0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
+             [0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+             [0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+        array = np.array(s)
+        with open(os.path.join(testdir, "smile.gcode"), 'r') as f:
+            gcode = f.read()
+        assert gcode == array_to_gcode(array)
