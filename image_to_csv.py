@@ -81,8 +81,8 @@ def image_to_csv(filename):
 	check_dimensions(array)
 
 	### Call normalize function from "csv_import" module
-	#array_norm = csv_import.normalize_intensity(array)
-	array_norm = array
+	array_norm = csv_import.normalize_intensity(array)
+	#array_norm = array
 
 	path_out = os.path.dirname(filename)
 	csv_filename = "{path}/{basename}.{ext}".format(path=path_out, basename=os.path.splitext(os.path.basename(filename))[0], ext="csv")

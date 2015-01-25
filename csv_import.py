@@ -5,6 +5,8 @@ import numpy as np
 
 from config import *
 
+import pdb
+
 ################## TODO ##################
 #1) Dealing with newline endings
 #2) catch potential numpy errors in conversion to int
@@ -36,8 +38,9 @@ def check_dimensions(array):
 
 
 def normalize_intensity(array):
-	max_val = np.amax(array) # Maximum of the flattened array
+	max_val = np.amax(array) # Maximum of the flattened array ---> returns float!
 	array_norm = array * MAX_INTENSITY/max_val
+	array_norm = array_norm.astype(int) # solve
 	return array_norm
 
 
