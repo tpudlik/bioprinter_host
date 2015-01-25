@@ -1,9 +1,16 @@
 #!/usr/bin/python
 
 import sys, argparse
+from image_to_csv import image_to_csv
 from csv_import import csv_import
 from array_to_gcode import array_to_gcode
 from gcode_to_arduino import gcode_to_arduino
+
+
+###################################### USAGE ######################################
+### Testing pipeline
+# python main.py example_files/scihackday.png --codes_file test.gcodes --response_file test.response
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Convert csv files into G-CODEs")
@@ -21,10 +28,8 @@ if __name__ == '__main__':
         print "Importing CSV..."
         array = csv_import(args.input_file)
     else:
-        pass
-        # array = image_import(args.input_file)
+        array = image_to_csv(args.input_file)
         # image_import returns the numpy array, but also writes out a csv 
-        # representation of the input image.
 
     print "Computing G-CODE..."
     gcode = array_to_gcode(array)
