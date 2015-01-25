@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import sys, argparse
 from csv_import import csv_import
 from array_to_gcode import array_to_gcode
