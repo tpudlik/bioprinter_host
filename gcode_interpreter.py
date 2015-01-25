@@ -5,6 +5,8 @@ import re
 
 from config import *
 
+#import pdb
+
 def read_gcode(filename):
 	""" function to read gcode as raw text """
 	##TODO: parse/read file line by line for memory considerations
@@ -14,13 +16,14 @@ def read_gcode(filename):
 	return gcode_raw
 
 
-def convert_gcode_to_array(gcode_raw):
+def convert_gcode_to_array(gcode_raw, dim=(HEIGHT, WIDTH)):
 	""" 
 	function to iterate over gcode text file
 	input: a iterable containing gcode text, e.g. a list of strings
 	"""
-	dim = (HEIGHT, WIDTH)
+	
 	array = np.zeros(dim, dtype=int)
+	print dim
 	(x,y) = (0,0)
 	for gcode_command in gcode_raw:
 		letter_address = gcode_command[0:2]
@@ -34,13 +37,22 @@ def convert_gcode_to_array(gcode_raw):
 			#print strip_array
 
 			try:
-				array[x:x+13, y] += strip_array
+				#array[y, x:x+13] += strip_array
+				array[y:y+13, x] += strip_array
+				print "strip_array", strip_array
 			except ValueError: # ValueError: operands could not be broadcast together with shapes XXX
-				len_array = len(array[x:x+13, y])
-				array[x:x+13, y] += strip_array[:len_array]
+				print "strip_array", strip_array
+				#len_array = len(array[x:x+13, y])
+				len_array = len(array[y:y+13, x])
+				#array[y, x:x+13] += strip_array[:len_array]
+				array[y:y+13, x] += strip_array[:len_array]
+				#print array[x:x+13, y]
+				print array[y:y+13, x]
+				print strip_array[:len_array]
+				print "array", array
 		else:
 			raise Exception("Encountered unexpected gcode letter address: [{}]".format(letter_address))
-		#print (x,y)
+		print (x,y)
 	return array
 
 def parse_gcode_M7(gcode_command):
@@ -58,7 +70,7 @@ def parse_gcode_M7(gcode_command):
 		firing_pattern_base_10 = int(firing_pattern_base_10)
 	except:
 		raise Exception("Could not convert firing_pattern_base_10 to int. firing_pattern_base_10={}".format(firing_pattern_base_10))
-	firing_pattern_base_2 = bin(firing_pattern_base_10).lstrip("0b") # convert to binary
+	firing_pattern_base_2 = bin(firing_pattern_base_10).lstrip("0b").zfill(12) # convert to binary. This is a string!
 	return firing_pattern_base_2
 
 
@@ -82,13 +94,15 @@ def gcode_interpreter(file_gcode):
 	""" this is the main function in this module """
 	gcode_raw = read_gcode(file_gcode)
 
-	array = convert_gcode_to_array(gcode_raw)
+	dim = (11, 11)
+	array = convert_gcode_to_array(gcode_raw, dim)
 
 	print array
 
 
 def main():
-	file_gcode = "example_files/test_excel.gcode"
+	#file_gcode = "example_files/test_excel.gcode"
+	file_gcode = "tests/smile.gcode"
 	gcode_interpreter(file_gcode)
 
 if __name__ == "__main__":

@@ -2,8 +2,8 @@
 config.py
 """
 
-HEIGHT = 15 # rows
-WIDTH = 4 # columns
+HEIGHT = 50 # rows
+WIDTH = 20 # columns
 
 # Maximum number of times you can print to a single spot
 MAX_INTENSITY = 10
