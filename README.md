@@ -25,3 +25,6 @@ describe its actions), provide a file name with the `-r` flag.
 *   `numpy` for representing the input internally.
 *   `pyserial` for communication with the Arduino.
 *   `scipy` for image imports
+*   `pillow` for image imports (scipy .misc uses pillow)
+*   `matplotlib` for printing heatmaps. THIS IS NOT VITAL FOR OUR BioPrinting PACKAGE
+
