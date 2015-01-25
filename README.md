@@ -13,7 +13,7 @@ Run,
     
     python main.py [-t] [-c CODES_FILE] [-r RESPONSE_FILE] input_file
 
-If you wish to use an image file as an input (as opposed to a CSV file), use
+If you wish to use a CSV file as input (as opposed to an image file), use
 the `-t` command line flag.  If you wish to save the G-CODEs to a file, rather
 than send them to the Arduino, provide a file name with the `-c` flag.  If
 you wish to save the Arduino's responses (it will acknowledge all commands and
