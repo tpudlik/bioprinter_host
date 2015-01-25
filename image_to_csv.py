@@ -30,10 +30,12 @@ def read_image(filename):
 	Note we use the "flatten=True" option.
 	The different colour bands/channels are stored in the third dimension, such that a grey-image is MxN, an RGB-image MxNx3 and an RGBA-image MxNx4. 
 	"""
-	try:
-		img_array = misc.imread(filename, flatten=True)
-	except: #TODO: find exception class
-		raise Exception("Could not read image file: {}".format(filename))
+	img_array = misc.imread(filename, flatten=True)
+
+	# try:
+	# 	img_array = misc.imread(filename, flatten=True)
+	# except: #TODO: find exception class
+	# 	raise Exception("Could not read image file: {}".format(filename))
 	
 	img_array_int = img_array.astype(int)
 
