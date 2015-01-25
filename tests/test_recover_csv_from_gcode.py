@@ -2,6 +2,8 @@
 
 """
 test_recover_csv_from_gcode.py
+
+PASCALS work. UNFINISHED!
 """
 
 import os, sys

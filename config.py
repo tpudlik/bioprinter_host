@@ -6,7 +6,7 @@ HEIGHT = 100 # rows
 WIDTH = 100 # columns
 
 # Maximum number of times you can print to a single spot
-MAX_INTENSITY = 10
+MAX_INTENSITY = 5
 
 # Number of nozzles
 NOZZLES = 12
