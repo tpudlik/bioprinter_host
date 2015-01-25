@@ -10,7 +10,7 @@ from gcode_to_arduino import gcode_to_arduino
 ###################################### USAGE ######################################
 ### Testing pipeline
 # python main.py example_files/scihackday.png --codes_file test.gcodes --response_file test.response
-
+# python main.py example_files/own_img_cross.png --codes_file own_img_cross.gcodes --response_file own_img_cross.response
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Convert csv files into G-CODEs")
