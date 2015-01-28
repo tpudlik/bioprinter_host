@@ -82,7 +82,8 @@ actions.)
 *   Use the `logging` module to keep track of the responses sent by the 
     Arduino.
 *   Add more tests, including dependecy tests.
-*   Clean up the source: keep tests
+*   Clean up the source: keep all tests and related files in the `tests`
+    subdirectory.
 *   `HEIGHT`, `WIDTH` in config should be max values, not only accepted sizes.
 *   Finish `test_recover_csv_from_gcode.py`.
 *   Document the heatmap feature, make it optional (command line input).

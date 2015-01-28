@@ -21,8 +21,12 @@ class test_main(TestCase):
 
     def test_own_img_cross(self):
         path_to_png = os.path.join(maindir, "example_files", "own_img_cross.png")
-        return_code = subprocess.call(["python", path_to_main, path_to_png,
-                                        "--codes_file", path_to_output])
+
+        # with statement: see http://stackoverflow.com/q/11269575/1224002
+        with open(os.devnull, 'w') as FNULL:
+            return_code = subprocess.call(["python", path_to_main, path_to_png,
+                                            "--codes_file", path_to_output],
+                                          stdout=FNULL)
 
         # The code ran successfully
         assert return_code == 0
@@ -37,8 +41,12 @@ class test_main(TestCase):
 
     def test_heart(self):
         path_to_png = os.path.join(maindir, "example_files", "heart.png")
-        return_code = subprocess.call(["python", path_to_main, path_to_png,
-                                        "--codes_file", path_to_output])
+        
+        # with statement: see http://stackoverflow.com/q/11269575/1224002
+        with open(os.devnull, 'w') as FNULL:
+            return_code = subprocess.call(["python", path_to_main, path_to_png,
+                                            "--codes_file", path_to_output],
+                                          stdout=FNULL)
 
         # The code ran successfully
         assert return_code == 0
