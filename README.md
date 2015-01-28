@@ -1,7 +1,9 @@
 #bioprinter_host
 
 Software for controlling a two-axis bioprinter, designed at the Boston
-Science Hack Day 2015.
+Science Hack Day 2015.  This repository contains the code to be run on the
+host machine (the computer controlling the Arduino).  For the complementary
+code that must be uploaded to the Arduino, see [bioprinter_arduino].
 
 
 ## Dependencies ##
@@ -11,6 +13,7 @@ Science Hack Day 2015.
 *   `scipy` for image imports
 *   `pillow` for image imports (`scipy.misc` uses Pillow)
 *   `matplotlib` for printing heatmaps. Not required for basic functionality.
+    See the Debugging Aids section, below.
 
 
 ## Installation ##
@@ -77,6 +80,26 @@ to a file.  (The Arduino acknowledges all commands and describes its
 actions.)
 
 
+## Debugging Aids ##
+
+By default, if you provide a PNG file `filename.png` as an input to `main.py`,
+the program will generate two files that will help with debugging potential
+problems:
+
+1.  `filename.arrayplot.png`, which compares the input PNG file to the
+    version normalized to `MAX_INTENSITY`.  The image on the right is a more
+    accurate representation of what will actually be printed.
+2.  `filename.csv`, a CSV representation of the image that will be printed.
+    The CSV file will have `HEIGHT` rows and `WIDTH` columns.  Its entries are
+    the number of depositions from the inkhead that will take place for a
+    given pixel.
+
+If you do not wish the software to generate these files, edit `config.py`
+and set `HEATMAP_OUTPUT` or `CSV_OUTPUT`, respectively, to `False`.  If you
+set `HEATMAP_OUTPUT` to `False`, `matplotlib` is no longer required to
+run the program.
+
+
 ## TO DO ##
 
 *   Use the `logging` module to keep track of the responses sent by the 
@@ -86,7 +109,6 @@ actions.)
     subdirectory.
 *   `HEIGHT`, `WIDTH` in config should be max values, not only accepted sizes.
 *   Finish `test_recover_csv_from_gcode.py`.
-*   Document the heatmap feature, make it optional (command line input).
 
 
 [bioprinter_arduino]: https://github.com/tpudlik/bioprinter_arduino

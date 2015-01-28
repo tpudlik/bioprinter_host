@@ -9,11 +9,11 @@ import csv_import
 
 from config import *
 
-
-import matplotlib
-matplotlib.use('Agg') #Agg backend and not an X-using backend that required an X11 connection. Call use BEFORE importing pyplot!
-# REF: http://stackoverflow.com/questions/4931376/generating-matplotlib-graphs-without-a-running-x-server
-import matplotlib.pyplot as plt # needed for plotting
+if HEATMAP_OUTPUT:
+	import matplotlib
+	matplotlib.use('Agg') #Agg backend and not an X-using backend that required an X11 connection. Call use BEFORE importing pyplot!
+	# REF: http://stackoverflow.com/questions/4931376/generating-matplotlib-graphs-without-a-running-x-server
+	import matplotlib.pyplot as plt # needed for plotting
 
 
 ################## TODO ##################
@@ -86,14 +86,16 @@ def image_to_csv(filename):
 	array_norm = csv_import.normalize_intensity(array)
 	#array_norm = array
 
-	path_out = os.path.dirname(filename)
-	csv_filename = "{path}/{basename}.{ext}".format(path=path_out, basename=os.path.splitext(os.path.basename(filename))[0], ext="csv")
-	#write_csv_file(array, csv_filename)
-	write_csv_file(array_norm, csv_filename)
+	if CSV_OUTPUT:
+		path_out = os.path.dirname(filename)
+		csv_filename = "{path}/{basename}.{ext}".format(path=path_out, basename=os.path.splitext(os.path.basename(filename))[0], ext="csv")
+		#write_csv_file(array, csv_filename)
+		write_csv_file(array_norm, csv_filename)
 
 	### plot it.
-	plot_filename = "{path}/{basename}.arrayplot.{ext}".format(path=path_out, basename=os.path.splitext(os.path.basename(filename))[0], ext="png")
-	plot_1x2_heatmap(array, array_norm, plot_filename) # the extension of the filename determines the output format of the image
+	if HEATMAP_OUTPUT:
+		plot_filename = "{path}/{basename}.arrayplot.{ext}".format(path=path_out, basename=os.path.splitext(os.path.basename(filename))[0], ext="png")
+		plot_1x2_heatmap(array, array_norm, plot_filename) # the extension of the filename determines the output format of the image
 
 	return array_norm
 	
