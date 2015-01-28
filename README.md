@@ -51,7 +51,7 @@ code that must be uploaded to the Arduino, see [bioprinter_arduino].
 
 The software lets you control the printer in two ways.
 
-1.  *Image file.*  You can instruct the printer to print out a _greyscale_  
+1.  *Image file.*  You can instruct the printer to print out a _greyscale_ 
     PNG image.  The image must have `HEIGHT` by `WIDTH` pixels (these values
     can be set in the `config.py` file, but must not exceed the maximum
     number of steps the motors can take, currently unknown). White pixels 
@@ -80,7 +80,7 @@ to a file.  (The Arduino acknowledges all commands and describes its
 actions.)
 
 
-## Debugging Aids ##
+### Debugging Aids ###
 
 By default, if you provide a PNG file `filename.png` as an input to `main.py`,
 the program will generate two files that will help with debugging potential
@@ -100,13 +100,32 @@ set `HEATMAP_OUTPUT` to `False`, `matplotlib` is no longer required to
 run the program.
 
 
+### Example Files ###
+
+To test the printer you may wish to print one of the test images, `heart.png`
+or `own_img_cross.png`.  To do so, run
+
+    python main.py ./example_files/heart.png
+
+or,
+    
+    python main.py ./example_files/own_img_cross.png
+
+
+
 ## TO DO ##
 
-*   Use the `logging` module to keep track of the responses sent by the 
-    Arduino.
+*   Use the `logging` module to keep track of the G-CODES sent and Arduino
+    responses received.
+*   Redo the command line interface.  The `-t` option should be scrapped,
+    replaced by autorecognition.  The `-r` option should also be scrapped:
+    the communication on the serial port should always be recorded in a log
+    file.  A `--quiet` option should be introduced to suppress the printing of
+    the serial port chatter to STDOUT.  (The two latter changes will be much
+    easier once the `logging` module is put to use.)
 *   Add more tests, including dependecy tests.
-*   Clean up the source: keep all tests and related files in the `tests`
-    subdirectory.
+*   Clean up the source: some of the files in `example_files` should probably
+    be moved to `tests`.
 *   `HEIGHT`, `WIDTH` in config should be max values, not only accepted sizes.
 *   Finish `test_recover_csv_from_gcode.py`.
 
